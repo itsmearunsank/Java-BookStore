@@ -59,6 +59,8 @@ public class ControllerServlet extends HttpServlet {
 				case "/insert":
 					insertBook(request, response);
           break;
+				case "/delete":
+					deleteBook(request, response);
         default:
 				   listBooks(request, response);
            break;
@@ -67,6 +69,13 @@ public class ControllerServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	private void deleteBook(HttpServletRequest request, HttpServletResponse response)
+	throws ServletException, IOException{
+		int id = Integer.parseInt(request.getParameter("id"));
+		bookDAO.doDelete(id);
+		response.sendRedirect("list");
 	}
 
 	private void showBookAdmin(HttpServletRequest request, HttpServletResponse response)
